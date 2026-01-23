@@ -12,6 +12,12 @@ use App\Models\CtaSection;
 use App\Models\ServicesHero;
 use App\Models\ServiceDetail;
 use App\Models\ServicesCta;
+use App\Models\IndustriesHero;
+use App\Models\IndustriesIntro;
+use App\Models\IndustryCard;
+use App\Models\IndustriesWhy;
+use App\Models\IndustriesWhyItem;
+use App\Models\IndustriesCta;
 
 Route::get('/', function () {
     $sliders = Slider::where('is_active', true)->orderBy('order')->get();
@@ -50,7 +56,16 @@ Route::get('/services', function () {
     
     return view('services', compact('hero', 'services', 'cta'));
 })->name('services');
-Route::view('/industries', 'industries')->name('industries');
+Route::get('/industries', function () {
+    $hero = IndustriesHero::first();
+    $intro = IndustriesIntro::first();
+    $industries = IndustryCard::where('is_active', true)->orderBy('order')->get();
+    $why = IndustriesWhy::first();
+    $whyItems = IndustriesWhyItem::orderBy('order')->get();
+    $cta = IndustriesCta::first();
+    
+    return view('industries', compact('hero', 'intro', 'industries', 'why', 'whyItems', 'cta'));
+})->name('industries');
 Route::view('/about', 'about')->name('about');
 Route::view('/careers', 'careers')->name('careers');
 Route::view('/resources', 'resources')->name('resources');
@@ -66,6 +81,7 @@ use App\Http\Controllers\Admin\Content\PageController;
 use App\Http\Controllers\Admin\Content\SliderController;
 use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\ServicesContentController;
+use App\Http\Controllers\Admin\IndustriesContentController;
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -102,6 +118,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/services-content/service/{service}', [ServicesContentController::class, 'deleteService'])->name('services-content.service.delete');
     Route::post('/services-content/feature', [ServicesContentController::class, 'storeFeature'])->name('services-content.feature.store');
     Route::delete('/services-content/feature/{feature}', [ServicesContentController::class, 'deleteFeature'])->name('services-content.feature.delete');
+    
+    // Industries Content Management
+    Route::get('/industries-content', [IndustriesContentController::class, 'index'])->name('industries-content.index');
+    Route::post('/industries-content/update-hero', [IndustriesContentController::class, 'updateHero'])->name('industries-content.update-hero');
+    Route::post('/industries-content/update-intro', [IndustriesContentController::class, 'updateIntro'])->name('industries-content.update-intro');
+    Route::post('/industries-content/industry', [IndustriesContentController::class, 'storeIndustry'])->name('industries-content.industry.store');
+    Route::put('/industries-content/industry/{industry}', [IndustriesContentController::class, 'updateIndustry'])->name('industries-content.industry.update');
+    Route::delete('/industries-content/industry/{industry}', [IndustriesContentController::class, 'deleteIndustry'])->name('industries-content.industry.delete');
+    Route::post('/industries-content/update-why', [IndustriesContentController::class, 'updateWhy'])->name('industries-content.update-why');
+    Route::post('/industries-content/why-item', [IndustriesContentController::class, 'storeWhyItem'])->name('industries-content.why-item.store');
+    Route::delete('/industries-content/why-item/{whyItem}', [IndustriesContentController::class, 'deleteWhyItem'])->name('industries-content.why-item.delete');
+    Route::post('/industries-content/update-cta', [IndustriesContentController::class, 'updateCta'])->name('industries-content.update-cta');
 });
 
 
