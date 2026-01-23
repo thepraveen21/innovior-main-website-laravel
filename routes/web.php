@@ -40,6 +40,15 @@ use App\Models\NewsCategory;
 use App\Models\NewsArticle;
 use App\Models\NewsLatestSection;
 use App\Models\NewsNewsletter;
+use App\Models\CareersHero;
+use App\Models\CareersCulture;
+use App\Models\CareersCultureCard;
+use App\Models\CareersOpening;
+use App\Models\CareersWhySection;
+use App\Models\CareersWhyItem;
+use App\Models\CareersProcess;
+use App\Models\CareersProcessStep;
+use App\Models\CareersCta;
 
 Route::get('/', function () {
     $sliders = Slider::where('is_active', true)->orderBy('order')->get();
@@ -103,7 +112,19 @@ Route::get('/about', function () {
     
     return view('about', compact('hero', 'overview', 'mvv', 'why', 'whyItems', 'culture', 'cultureHighlights', 'offices', 'officeLocations', 'partners', 'partnerItems'));
 })->name('about');
-Route::view('/careers', 'careers')->name('careers');
+Route::get('/careers', function () {
+    $hero = CareersHero::first();
+    $culture = CareersCulture::first();
+    $cultureCards = CareersCultureCard::orderBy('order')->get();
+    $openings = CareersOpening::where('is_active', true)->orderBy('order')->get();
+    $whySection = CareersWhySection::first();
+    $whyItems = CareersWhyItem::orderBy('order')->get();
+    $process = CareersProcess::first();
+    $processSteps = CareersProcessStep::orderBy('order')->get();
+    $cta = CareersCta::first();
+    
+    return view('careers', compact('hero', 'culture', 'cultureCards', 'openings', 'whySection', 'whyItems', 'process', 'processSteps', 'cta'));
+})->name('careers');
 Route::view('/resources', 'resources')->name('resources');
 Route::view('/contact', 'contact')->name('contact');
 Route::get('/news', function () {
@@ -126,7 +147,6 @@ Route::get('/works', function () {
     
     return view('works', compact('hero', 'categories', 'projects', 'stats', 'statItems', 'cta'));
 })->name('works');
-Route::get('/careers', fn () => view('careers'))->name('careers');
 
 
 // Admin Dashboard Route
@@ -139,6 +159,7 @@ use App\Http\Controllers\Admin\IndustriesContentController;
 use App\Http\Controllers\Admin\AboutContentController;
 use App\Http\Controllers\Admin\WorksContentController;
 use App\Http\Controllers\Admin\NewsContentController;
+use App\Http\Controllers\Admin\CareersContentController;
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -235,6 +256,26 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/news-content/article/{article}', [NewsContentController::class, 'deleteArticle'])->name('news-content.article.delete');
     Route::post('/news-content/update-latest-section', [NewsContentController::class, 'updateLatestSection'])->name('news-content.update-latest-section');
     Route::post('/news-content/update-newsletter', [NewsContentController::class, 'updateNewsletter'])->name('news-content.update-newsletter');
+    
+    // Careers Content Management
+    Route::get('/careers-content', [CareersContentController::class, 'index'])->name('careers-content.index');
+    Route::post('/careers-content/update-hero', [CareersContentController::class, 'updateHero'])->name('careers-content.update-hero');
+    Route::post('/careers-content/update-culture', [CareersContentController::class, 'updateCulture'])->name('careers-content.update-culture');
+    Route::post('/careers-content/culture-card', [CareersContentController::class, 'storeCultureCard'])->name('careers-content.culture-card.store');
+    Route::put('/careers-content/culture-card/{card}', [CareersContentController::class, 'updateCultureCard'])->name('careers-content.culture-card.update');
+    Route::delete('/careers-content/culture-card/{card}', [CareersContentController::class, 'deleteCultureCard'])->name('careers-content.culture-card.delete');
+    Route::post('/careers-content/opening', [CareersContentController::class, 'storeOpening'])->name('careers-content.opening.store');
+    Route::put('/careers-content/opening/{opening}', [CareersContentController::class, 'updateOpening'])->name('careers-content.opening.update');
+    Route::delete('/careers-content/opening/{opening}', [CareersContentController::class, 'deleteOpening'])->name('careers-content.opening.delete');
+    Route::post('/careers-content/update-why-section', [CareersContentController::class, 'updateWhySection'])->name('careers-content.update-why-section');
+    Route::post('/careers-content/why-item', [CareersContentController::class, 'storeWhyItem'])->name('careers-content.why-item.store');
+    Route::put('/careers-content/why-item/{item}', [CareersContentController::class, 'updateWhyItem'])->name('careers-content.why-item.update');
+    Route::delete('/careers-content/why-item/{item}', [CareersContentController::class, 'deleteWhyItem'])->name('careers-content.why-item.delete');
+    Route::post('/careers-content/update-process', [CareersContentController::class, 'updateProcess'])->name('careers-content.update-process');
+    Route::post('/careers-content/process-step', [CareersContentController::class, 'storeProcessStep'])->name('careers-content.process-step.store');
+    Route::put('/careers-content/process-step/{step}', [CareersContentController::class, 'updateProcessStep'])->name('careers-content.process-step.update');
+    Route::delete('/careers-content/process-step/{step}', [CareersContentController::class, 'deleteProcessStep'])->name('careers-content.process-step.delete');
+    Route::post('/careers-content/update-cta', [CareersContentController::class, 'updateCta'])->name('careers-content.update-cta');
 });
 
 

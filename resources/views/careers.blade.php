@@ -11,30 +11,33 @@
 <!-- HERO -->
 <section class="careers-hero">
     <div class="hero-inner">
-        <span class="hero-tag">Careers at Innovior</span>
-        <h1>Shape the Future of Digital Innovation</h1>
+        <span class="hero-tag">{{ $hero->tag ?? 'Careers at Innovior' }}</span>
+        <h1>{{ $hero->heading ?? 'Shape the Future of Digital Innovation' }}</h1>
         <p>
-            At Innovior, we build intelligent, scalable, and future-ready
-            solutions that empower businesses worldwide. Join us and be part
-            of a team that turns ideas into impact.
+            {{ $hero->description ?? 'At Innovior, we build intelligent, scalable, and future-ready solutions that empower businesses worldwide. Join us and be part of a team that turns ideas into impact.' }}
         </p>
-        <a href="#openings" class="btn-primary">Explore Opportunities</a>
+        <a href="{{ $hero->button_link ?? '#openings' }}" class="btn-primary">{{ $hero->button_text ?? 'Explore Opportunities' }}</a>
     </div>
 </section>
 
 <!-- COMPANY CULTURE -->
 <section class="careers-culture">
     <div class="culture-content">
-        <h2>Life at Innovior</h2>
+        <h2>{{ $culture->heading ?? 'Life at Innovior' }}</h2>
         <p>
-            We are a technology-driven organization built on innovation,
-            collaboration, and continuous growth. Our teams work with
-            cutting-edge technologies while maintaining a strong focus on
-            quality, ethics, and long-term value.
+            {{ $culture->description ?? 'We are a technology-driven organization built on innovation, collaboration, and continuous growth. Our teams work with cutting-edge technologies while maintaining a strong focus on quality, ethics, and long-term value.' }}
         </p>
     </div>
 
     <div class="culture-grid">
+        @forelse($cultureCards as $card)
+        <div class="culture-card">
+            <h3>{{ $card->title }}</h3>
+            <p>
+                {{ $card->description }}
+            </p>
+        </div>
+        @empty
         <div class="culture-card">
             <h3>Innovation-Driven</h3>
             <p>
@@ -58,6 +61,7 @@
                 advancement.
             </p>
         </div>
+        @endforelse
     </div>
 </section>
 
@@ -66,7 +70,20 @@
     <h2>Current Openings</h2>
 
     <div class="openings-list">
-
+        @forelse($openings as $opening)
+        <div class="opening-card">
+            <div>
+                <h3>{{ $opening->title }}</h3>
+                <p>
+                    {{ $opening->description }}
+                </p>
+            </div>
+            <div class="opening-meta">
+                <span>{{ $opening->job_type }}</span>
+                <span>{{ $opening->location }}</span>
+            </div>
+        </div>
+        @empty
         <div class="opening-card">
             <div>
                 <h3>Software Engineer</h3>
@@ -80,57 +97,23 @@
                 <span>Hybrid</span>
             </div>
         </div>
-
-        <div class="opening-card">
-            <div>
-                <h3>AI / Machine Learning Engineer</h3>
-                <p>
-                    Design and implement intelligent systems powered by data,
-                    analytics, and machine learning.
-                </p>
-            </div>
-            <div class="opening-meta">
-                <span>Full-Time</span>
-                <span>On-site</span>
-            </div>
-        </div>
-
-        <div class="opening-card">
-            <div>
-                <h3>UI / UX Designer</h3>
-                <p>
-                    Create intuitive, elegant, and user-focused digital
-                    experiences.
-                </p>
-            </div>
-            <div class="opening-meta">
-                <span>Full-Time</span>
-                <span>On-site</span>
-            </div>
-        </div>
-
-        <div class="opening-card">
-            <div>
-                <h3>Software Engineering Intern</h3>
-                <p>
-                    Gain hands-on experience by working alongside senior
-                    engineers on real projects.
-                </p>
-            </div>
-            <div class="opening-meta">
-                <span>Internship</span>
-                <span>On-site</span>
-            </div>
-        </div>
-
+        @endforelse
     </div>
 </section>
 
 <!-- WHY JOIN -->
 <section class="careers-why">
-    <h2>Why Join Innovior?</h2>
+    <h2>{{ $whySection->heading ?? 'Why Join Innovior?' }}</h2>
 
     <div class="why-grid">
+        @forelse($whyItems as $item)
+        <div class="why-item">
+            <h4>{{ $item->title }}</h4>
+            <p>
+                {{ $item->description }}
+            </p>
+        </div>
+        @empty
         <div class="why-item">
             <h4>Meaningful Work</h4>
             <p>
@@ -158,29 +141,34 @@
                 We invest in people, not just positions.
             </p>
         </div>
+        @endforelse
     </div>
 </section>
 
 <!-- HIRING PROCESS -->
 <section class="careers-process">
-    <h2>Our Hiring Process</h2>
+    <h2>{{ $process->heading ?? 'Our Hiring Process' }}</h2>
 
     <div class="process-timeline">
+        @forelse($processSteps as $step)
+        <div class="process-step">{{ $step->title }}</div>
+        @empty
         <div class="process-step">Application Review</div>
         <div class="process-step">Technical Interview</div>
         <div class="process-step">Final Discussion</div>
         <div class="process-step">Offer & Onboarding</div>
+        @endforelse
     </div>
 </section>
 
 <!-- CTA -->
 <section class="careers-cta">
-    <h2>Take the Next Step in Your Career</h2>
+    <h2>{{ $cta->heading ?? 'Take the Next Step in Your Career' }}</h2>
     <p>
-        Send your CV and portfolio to  
-        <strong>careers@innovior.com</strong>
+        {{ $cta->description ?? 'Send your CV and portfolio to' }}  
+        <strong>{{ $cta->email ?? 'careers@innovior.com' }}</strong>
     </p>
-    <a href="{{ route('contact') }}" class="btn-secondary">Contact Recruitment</a>
+    <a href="{{ $cta->button_link ?? route('contact') }}" class="btn-secondary">{{ $cta->button_text ?? 'Contact Recruitment' }}</a>
 </section>
 
 @endsection

@@ -147,6 +147,9 @@
                 <a href="{{ route('admin.news-content.index') }}" class="{{ request()->routeIs('admin.news-content.*') ? 'active' : '' }}">
                     📰 News Content
                 </a>
+                <a href="{{ route('admin.careers-content.index') }}" class="{{ request()->routeIs('admin.careers-content.*') ? 'active' : '' }}">
+                    💼 Careers Content
+                </a>
                 <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                     📄 Pages
                 </a>
