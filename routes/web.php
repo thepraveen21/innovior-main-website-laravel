@@ -35,6 +35,11 @@ use App\Models\Project;
 use App\Models\WorksStats;
 use App\Models\WorksStatItem;
 use App\Models\WorksCta;
+use App\Models\NewsHero;
+use App\Models\NewsCategory;
+use App\Models\NewsArticle;
+use App\Models\NewsLatestSection;
+use App\Models\NewsNewsletter;
 
 Route::get('/', function () {
     $sliders = Slider::where('is_active', true)->orderBy('order')->get();
@@ -101,7 +106,16 @@ Route::get('/about', function () {
 Route::view('/careers', 'careers')->name('careers');
 Route::view('/resources', 'resources')->name('resources');
 Route::view('/contact', 'contact')->name('contact');
-Route::view('/news', 'news')->name('news');
+Route::get('/news', function () {
+    $hero = NewsHero::first();
+    $categories = NewsCategory::where('is_active', true)->orderBy('order')->get();
+    $featuredArticle = NewsArticle::with('category')->where('is_featured', true)->where('is_active', true)->first();
+    $articles = NewsArticle::with('category')->where('is_featured', false)->where('is_active', true)->orderBy('published_date', 'desc')->get();
+    $latestSection = NewsLatestSection::first();
+    $newsletter = NewsNewsletter::first();
+    
+    return view('news', compact('hero', 'categories', 'featuredArticle', 'articles', 'latestSection', 'newsletter'));
+})->name('news');
 Route::get('/works', function () {
     $hero = WorksHero::first();
     $categories = ProjectCategory::where('is_active', true)->orderBy('order')->get();
@@ -124,6 +138,7 @@ use App\Http\Controllers\Admin\ServicesContentController;
 use App\Http\Controllers\Admin\IndustriesContentController;
 use App\Http\Controllers\Admin\AboutContentController;
 use App\Http\Controllers\Admin\WorksContentController;
+use App\Http\Controllers\Admin\NewsContentController;
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -208,6 +223,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/works-content/stat-item/{statItem}', [WorksContentController::class, 'updateStatItem'])->name('works-content.stat-item.update');
     Route::delete('/works-content/stat-item/{statItem}', [WorksContentController::class, 'deleteStatItem'])->name('works-content.stat-item.delete');
     Route::post('/works-content/update-cta', [WorksContentController::class, 'updateCta'])->name('works-content.update-cta');
+    
+    // News Content Management
+    Route::get('/news-content', [NewsContentController::class, 'index'])->name('news-content.index');
+    Route::post('/news-content/update-hero', [NewsContentController::class, 'updateHero'])->name('news-content.update-hero');
+    Route::post('/news-content/category', [NewsContentController::class, 'storeCategory'])->name('news-content.category.store');
+    Route::put('/news-content/category/{category}', [NewsContentController::class, 'updateCategory'])->name('news-content.category.update');
+    Route::delete('/news-content/category/{category}', [NewsContentController::class, 'deleteCategory'])->name('news-content.category.delete');
+    Route::post('/news-content/article', [NewsContentController::class, 'storeArticle'])->name('news-content.article.store');
+    Route::put('/news-content/article/{article}', [NewsContentController::class, 'updateArticle'])->name('news-content.article.update');
+    Route::delete('/news-content/article/{article}', [NewsContentController::class, 'deleteArticle'])->name('news-content.article.delete');
+    Route::post('/news-content/update-latest-section', [NewsContentController::class, 'updateLatestSection'])->name('news-content.update-latest-section');
+    Route::post('/news-content/update-newsletter', [NewsContentController::class, 'updateNewsletter'])->name('news-content.update-newsletter');
 });
 
 
