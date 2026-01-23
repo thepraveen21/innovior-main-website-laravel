@@ -9,6 +9,9 @@ use App\Models\Service;
 use App\Models\ProcessStep;
 use App\Models\StatsBanner;
 use App\Models\CtaSection;
+use App\Models\ServicesHero;
+use App\Models\ServiceDetail;
+use App\Models\ServicesCta;
 
 Route::get('/', function () {
     $sliders = Slider::where('is_active', true)->orderBy('order')->get();
@@ -40,7 +43,13 @@ Route::get('/contact', function () {
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 
-Route::view('/services', 'services')->name('services');
+Route::get('/services', function () {
+    $hero = ServicesHero::first();
+    $services = ServiceDetail::with('features')->where('is_active', true)->orderBy('order')->get();
+    $cta = ServicesCta::first();
+    
+    return view('services', compact('hero', 'services', 'cta'));
+})->name('services');
 Route::view('/industries', 'industries')->name('industries');
 Route::view('/about', 'about')->name('about');
 Route::view('/careers', 'careers')->name('careers');
@@ -56,6 +65,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\Content\PageController;
 use App\Http\Controllers\Admin\Content\SliderController;
 use App\Http\Controllers\Admin\HomeContentController;
+use App\Http\Controllers\Admin\ServicesContentController;
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -83,10 +93,15 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/home-content/stats-banner/{statsBanner}', [HomeContentController::class, 'updateStatsBanner'])->name('home-content.stats-banner.update');
     Route::delete('/home-content/stats-banner/{statsBanner}', [HomeContentController::class, 'deleteStatsBanner'])->name('home-content.stats-banner.delete');
     
-    // Sliders
-    Route::post('/home-content/slider', [HomeContentController::class, 'storeSlider'])->name('home-content.slider.store');
-    Route::put('/home-content/slider/{slider}', [HomeContentController::class, 'updateSlider'])->name('home-content.slider.update');
-    Route::delete('/home-content/slider/{slider}', [HomeContentController::class, 'deleteSlider'])->name('home-content.slider.delete');
+    // Services Content Management
+    Route::get('/services-content', [ServicesContentController::class, 'index'])->name('services-content.index');
+    Route::post('/services-content/update-hero', [ServicesContentController::class, 'updateHero'])->name('services-content.update-hero');
+    Route::post('/services-content/update-cta', [ServicesContentController::class, 'updateCta'])->name('services-content.update-cta');
+    Route::post('/services-content/service', [ServicesContentController::class, 'storeService'])->name('services-content.service.store');
+    Route::put('/services-content/service/{service}', [ServicesContentController::class, 'updateService'])->name('services-content.service.update');
+    Route::delete('/services-content/service/{service}', [ServicesContentController::class, 'deleteService'])->name('services-content.service.delete');
+    Route::post('/services-content/feature', [ServicesContentController::class, 'storeFeature'])->name('services-content.feature.store');
+    Route::delete('/services-content/feature/{feature}', [ServicesContentController::class, 'deleteFeature'])->name('services-content.feature.delete');
 });
 
 

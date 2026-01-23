@@ -132,6 +132,9 @@
                 <a href="{{ route('admin.home-content.index') }}" class="{{ request()->routeIs('admin.home-content.*') ? 'active' : '' }}">
                     🏠 Home Content
                 </a>
+                <a href="{{ route('admin.services-content.index') }}" class="{{ request()->routeIs('admin.services-content.*') ? 'active' : '' }}">
+                    🔧 Services Content
+                </a>
                 <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                     📄 Pages
                 </a>
