@@ -49,6 +49,11 @@ use App\Models\CareersWhyItem;
 use App\Models\CareersProcess;
 use App\Models\CareersProcessStep;
 use App\Models\CareersCta;
+use App\Models\ContactHero;
+use App\Models\ContactInfo;
+use App\Models\ContactInfoCard;
+use App\Models\ContactFormSettings;
+use App\Models\ContactMap;
 
 Route::get('/', function () {
     $sliders = Slider::where('is_active', true)->orderBy('order')->get();
@@ -74,7 +79,13 @@ Route::get('/about', function () {
 });
 
 Route::get('/contact', function () {
-    return view('contact');
+    $hero = ContactHero::first();
+    $info = ContactInfo::first();
+    $infoCards = ContactInfoCard::orderBy('order')->get();
+    $formSettings = ContactFormSettings::first();
+    $map = ContactMap::first();
+    
+    return view('contact', compact('hero', 'info', 'infoCards', 'formSettings', 'map'));
 })->name('contact');
 
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
@@ -126,7 +137,6 @@ Route::get('/careers', function () {
     return view('careers', compact('hero', 'culture', 'cultureCards', 'openings', 'whySection', 'whyItems', 'process', 'processSteps', 'cta'));
 })->name('careers');
 Route::view('/resources', 'resources')->name('resources');
-Route::view('/contact', 'contact')->name('contact');
 Route::get('/news', function () {
     $hero = NewsHero::first();
     $categories = NewsCategory::where('is_active', true)->orderBy('order')->get();
@@ -158,6 +168,7 @@ use App\Http\Controllers\Admin\ServicesContentController;
 use App\Http\Controllers\Admin\IndustriesContentController;
 use App\Http\Controllers\Admin\AboutContentController;
 use App\Http\Controllers\Admin\WorksContentController;
+use App\Http\Controllers\Admin\ContactContentController;
 use App\Http\Controllers\Admin\NewsContentController;
 use App\Http\Controllers\Admin\CareersContentController;
 
@@ -276,6 +287,16 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::put('/careers-content/process-step/{step}', [CareersContentController::class, 'updateProcessStep'])->name('careers-content.process-step.update');
     Route::delete('/careers-content/process-step/{step}', [CareersContentController::class, 'deleteProcessStep'])->name('careers-content.process-step.delete');
     Route::post('/careers-content/update-cta', [CareersContentController::class, 'updateCta'])->name('careers-content.update-cta');
+    
+    // Contact Content Routes
+    Route::get('/contact-content', [ContactContentController::class, 'index'])->name('contact-content.index');
+    Route::post('/contact-content/update-hero', [ContactContentController::class, 'updateHero'])->name('contact-content.update-hero');
+    Route::post('/contact-content/update-info', [ContactContentController::class, 'updateInfo'])->name('contact-content.update-info');
+    Route::post('/contact-content/info-card', [ContactContentController::class, 'storeInfoCard'])->name('contact-content.info-card.store');
+    Route::put('/contact-content/info-card/{card}', [ContactContentController::class, 'updateInfoCard'])->name('contact-content.info-card.update');
+    Route::delete('/contact-content/info-card/{card}', [ContactContentController::class, 'deleteInfoCard'])->name('contact-content.info-card.delete');
+    Route::post('/contact-content/update-form-settings', [ContactContentController::class, 'updateFormSettings'])->name('contact-content.update-form-settings');
+    Route::post('/contact-content/update-map', [ContactContentController::class, 'updateMap'])->name('contact-content.update-map');
 });
 
 
