@@ -1,0 +1,1277 @@
+/* ================= DARK MODE STYLES ================= */
+
+/* Dark mode toggle button */
+/* .theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3B82F6, #0ea5e9);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    animation: slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+} */
+
+/* Dark mode root variables */
+:root.dark-mode {
+    --primary-blue: #60a5fa;
+    --blue-dark: #3b82f6;
+    --blue-darker: #1e3a8a;
+    --blue-light: #1e40af;
+    --blue-lighter: #0f172a;
+    --blue-accent: #0ea5e9;
+    --blue-muted: #94a3b8;
+    
+    --bg-dark: #0f172a;
+    --bg-light: #1e293b;
+    --bg-lighter: #334155;
+    
+    --text-light: #f1f5f9;
+    --text-muted: #cbd5e1;
+    --text-dark: #0f172a;
+    
+    --border-color: #475569;
+    --purple: #60a5fa;
+    --red: #60a5fa;
+}
+
+/* Dark mode body and general styles 
+:root.dark-mode body,
+:root.dark-mode html {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+}
+
+/* Navbar dark mode */
+:root.dark-mode .navbar {
+    background: rgba(15, 23, 42, 0.98) !important;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+/* Fix dropdown/mega menu buttons in header - IMPORTANT */
+:root.dark-mode .nav-link {
+    color: #cbd5e1 !important;
+    border-color: transparent !important;
+    background-color: transparent !important;
+}
+
+:root.dark-mode .nav-link:hover {
+    color: #60a5fa !important;
+    background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+:root.dark-mode .contact-btn {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+:root.dark-mode .contact-btn:hover {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5) !important;
+}
+
+:root.dark-mode .dropdown-toggle {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .dropdown-toggle:hover {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .dropdown-toggle::after {
+    border-color: transparent transparent #cbd5e1 !important;
+}
+
+:root.dark-mode .dropdown-toggle:hover::after {
+    border-color: transparent transparent #60a5fa !important;
+}
+
+:root.dark-mode .dropdown-menu {
+    background: rgba(15, 23, 42, 0.98) !important;
+    border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+:root.dark-mode .dropdown-menu .dropdown-item {
+    color: #cbd5e1 !important;
+    background: transparent !important;
+}
+
+:root.dark-mode .dropdown-menu .dropdown-item:hover {
+    color: #60a5fa !important;
+    background: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* ================= ABOUT PAGE DARK MODE ================= */
+
+:root.dark-mode .about-page {
+    background: #0f172a !important;
+}
+
+/* About overview section */
+:root.dark-mode .about-overview {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .about-overview h2 {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .about-overview p {
+    color: #cbd5e1 !important;
+}
+
+/* Stat cards */
+:root.dark-mode .stat-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .stat-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .stat-number {
+    background: linear-gradient(135deg, #60a5fa, #0ea5e9) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+:root.dark-mode .stat-label {
+    color: #cbd5e1 !important;
+}
+
+/* Mission/Vision/Values section */
+:root.dark-mode .about-mvv {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .mvv-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .mvv-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 12px 30px rgba(59, 130, 246, 0.25) !important;
+}
+
+:root.dark-mode .mvv-card h3 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .mvv-card p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .mvv-icon,
+:root.dark-mode .mvv-icon-wrapper {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .mvv-icon.blue,
+:root.dark-mode .mvv-icon-wrapper.blue {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .mvv-icon.purple,
+:root.dark-mode .mvv-icon-wrapper.purple {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .mvv-icon.red,
+:root.dark-mode .mvv-icon-wrapper.red {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    color: #60a5fa !important;
+}
+
+/* Why choose us section */
+:root.dark-mode .about-why {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .about-why h2 {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .why-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .why-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .why-icon {
+    background: rgba(59, 130, 246, 0.2) !important;
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .why-card h4 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .why-card p {
+    color: #cbd5e1 !important;
+}
+
+/* Partner cards */
+:root.dark-mode .partner-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .partner-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .partner-card h4 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .partner-card p {
+    color: #cbd5e1 !important;
+}
+
+/* ================= SERVICES PAGE DARK MODE ================= */
+
+:root.dark-mode .services,
+:root.dark-mode .service-section {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .service-section.alt {
+    background: #1e293b !important;
+}
+
+:root.dark-mode .service-nav-wrapper {
+    background: rgba(15, 23, 42, 0.98) !important;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.1) !important;
+}
+
+:root.dark-mode .service-nav a {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .service-nav a:hover,
+:root.dark-mode .service-nav a.active {
+    color: #60a5fa !important;
+    border-bottom-color: #60a5fa !important;
+}
+
+:root.dark-mode .service-text h2 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .service-text p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .service-text li {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .service-text li::before {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .services-cta {
+    background: #1e293b !important;
+}
+
+:root.dark-mode .services-cta h2 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .services-cta p {
+    color: #cbd5e1 !important;
+}
+
+/* ================= INDUSTRIES PAGE DARK MODE ================= */
+
+:root.dark-mode .industries-section {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .industries-grid {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .industry-card,
+:root.dark-mode .industries-grid > div {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .industry-card:hover,
+:root.dark-mode .industries-grid > div:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+}
+
+:root.dark-mode .industry-card h3,
+:root.dark-mode .industries-grid > div h3 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .industry-card p,
+:root.dark-mode .industries-grid > div p {
+    color: #cbd5e1 !important;
+}
+
+/* ================= WORKS/PORTFOLIO PAGE DARK MODE ================= */
+
+:root.dark-mode .works-page,
+:root.dark-mode .works-section {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .work-item,
+:root.dark-mode .works-grid > div,
+:root.dark-mode .portfolio-item {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .work-item:hover,
+:root.dark-mode .works-grid > div:hover,
+:root.dark-mode .portfolio-item:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .work-item h3,
+:root.dark-mode .works-grid > div h3,
+:root.dark-mode .work-title {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .work-item p,
+:root.dark-mode .works-grid > div p,
+:root.dark-mode .work-description {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .work-meta {
+    color: #94a3b8 !important;
+}
+
+/* ================= NEWS PAGE DARK MODE ================= */
+
+:root.dark-mode .news-page,
+:root.dark-mode .news-section,
+:root.dark-mode .news-grid-section,
+:root.dark-mode .news-featured,
+:root.dark-mode .featured-news-section {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .news-featured h2 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .featured-news-card {
+    background: transparent !important;
+}
+
+:root.dark-mode .featured-image {
+    border: 1px solid #475569;
+}
+
+:root.dark-mode .featured-badge {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+}
+
+:root.dark-mode .featured-content h3 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .featured-content p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .news-item,
+:root.dark-mode .news-grid > div,
+:root.dark-mode .article-card,
+:root.dark-mode .news-card,
+:root.dark-mode .featured-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .news-item:hover,
+:root.dark-mode .news-grid > div:hover,
+:root.dark-mode .article-card:hover,
+:root.dark-mode .news-card:hover,
+:root.dark-mode .featured-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .news-item h3,
+:root.dark-mode .news-grid > div h3,
+:root.dark-mode .article-title,
+:root.dark-mode .news-card h3,
+:root.dark-mode .featured-card h3 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .news-item p,
+:root.dark-mode .news-grid > div p,
+:root.dark-mode .article-excerpt,
+:root.dark-mode .news-card p,
+:root.dark-mode .featured-card p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .article-meta,
+:root.dark-mode .article-date,
+:root.dark-mode .news-meta,
+:root.dark-mode .news-date {
+    color: #94a3b8 !important;
+}
+
+:root.dark-mode .opening-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    border-left-color: #60a5fa !important;
+    color: #f1f5f9;
+}
+
+/* ================= CAREERS PAGE DARK MODE ================= */
+
+:root.dark-mode .careers-page,
+:root.dark-mode .careers-hero,
+:root.dark-mode .careers-section,
+:root.dark-mode .jobs-section,
+:root.dark-mode .benefits-section,
+:root.dark-mode .careers-culture,
+:root.dark-mode .careers-openings,
+:root.dark-mode .careers-process {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .careers-why {
+    background: #1e293b !important;
+}
+
+:root.dark-mode .career-item,
+:root.dark-mode .careers-grid > div,
+:root.dark-mode .job-card,
+:root.dark-mode .job-listing,
+:root.dark-mode .benefit-card,
+:root.dark-mode .culture-card,
+:root.dark-mode .job-item {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .career-item:hover,
+:root.dark-mode .careers-grid > div:hover,
+:root.dark-mode .job-card:hover,
+:root.dark-mode .job-listing:hover,
+:root.dark-mode .benefit-card:h,
+:root.dark-mode .opening-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    border-left-mode .job-item:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .careers-openings h2,
+:root.dark-mode .careers-culture h2,
+:root.dark-mode .careers-why h2 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .job-position,
+:root.dark-mode .career-item h3,
+:root.dark-mode .careers-grid > div h3,
+:root.dark-mode .job-item h3,
+:root.dark-mode .culture-card h3,
+:root.dark-mode .benefit-card h3 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .job-description,
+:root.dark-mode .career-item p,
+:root.dark-mode .careers-grid > div p,
+:root.dark-mode .job-item p,
+:root.dark-mode .culture-card p,
+:root.dark-mode .benefit-card p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .job-meta,
+:root.dark-mode .job-type {
+    color: #94a3b8 !important;
+}
+
+:root.dark-mode .careers-cta {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%) !important;
+}
+
+:root.dark-mode .careers-cta h2 {
+    color: #f1f5f9 !important;
+}
+
+/* ================= GENERAL TEXT COLORS ================= */
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .job-position,
+:root.dark-mode .career-item h3,
+:root.dark-mode .careers-grid > div h3 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .job-description,
+:root.dark-mode .career-item p,
+:root.dark-mode .careers-grid > div p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .job-meta,
+:root.dark-mode .job-type {
+    color: #94a3b8 !important;
+}
+
+/* ================= GENERAL TEXT COLORS ================= */
+
+:root.dark-mode h1,
+:root.dark-mode h2,
+:root.dark-mode h3,
+:root.dark-mode h4,
+:root.dark-mode h5,
+:root.dark-mode h6 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode a {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode a:hover {
+    color: #93c5fd !important;
+}
+
+/* ================= HERO SECTIONS - ALL PAGES ================= */
+
+:root.dark-mode .hero,
+:root.dark-mode .hero-section,
+:root.dark-mode .contact-hero,
+:root.dark-mode .services-hero,
+:root.dark-mode .works-hero,
+:root.dark-mode .news-hero {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .hero-content h1,
+:root.dark-mode .hero-section h1 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .hero-content p,
+:root.dark-mode .hero-section p {
+    color: #cbd5e1 !important;
+}
+
+/* ================= HOME PAGE SPECIFIC ================= */
+
+:root.dark-mode .about,
+:root.dark-mode .process,
+:root.dark-mode .section {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .about-card,
+:root.dark-mode .service-card,
+:root.dark-mode .step-item {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode .about-card:hover,
+:root.dark-mode .service-card:hover,
+:root.dark-mode .step-item:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2) !important;
+}
+
+:root.dark-mode .service-card h3,
+:root.dark-mode .about-card h3,
+:root.dark-mode .card-content h3,
+:root.dark-mode .step-item h4 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .service-card p,
+:root.dark-mode .about-card p,
+:root.dark-mode .card-content p,
+:root.dark-mode .step-item p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .learn-more {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .learn-more:hover {
+    color: #3b82f6 !important;
+}
+
+:root.dark-mode .step-num {
+    color: rgba(96, 165, 250, 0.1) !important;
+}
+
+:root.dark-mode .info-card {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-color: #475569 !important;
+}
+
+:root.dark-mode .info-card:hover {
+    background: rgba(51, 65, 85, 0.9) !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .info-icon {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .info-icon.blue {
+    background: rgba(59, 130, 246, 0.2) !important;
+    border-color: rgba(59, 130, 246, 0.4) !important;
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .info-text h4 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .info-text p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .project-card,
+:root.dark-mode .portfolio-item,
+:root.dark-mode .work-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+:root.dark-mode .project-card:hover,
+:root.dark-mode .portfolio-item:hover,
+:root.dark-mode .work-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .project-card h3,
+:root.dark-mode .portfolio-item h3,
+:root.dark-mode .work-card h3 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .project-card p,
+:root.dark-mode .portfolio-item p,
+:root.dark-mode .work-card p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .image-bg {
+    background: #1e293b !important;
+}
+
+:root.dark-mode .stats-row {
+    border-top-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+:root.dark-mode .stat-mini strong {
+    color: #60a5fa !important;
+}
+
+/* ================= BUTTONS & FORMS ================= */
+
+:root.dark-mode .btn,
+:root.dark-mode button:not(.theme-toggle):not(.dropdown-toggle):not(.mobile-menu-toggle):not(.filter-btn) {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+:root.dark-mode .btn:hover,
+:root.dark-mode button:not(.theme-toggle):not(.dropdown-toggle):not(.mobile-menu-toggle):not(.filter-btn):hover {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5) !important;
+}
+
+:root.dark-mode .btn.primary {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+:root.dark-mode .btn.primary:hover {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
+}
+
+:root.dark-mode .btn.outline {
+    background: transparent !important;
+    color: #60a5fa !important;
+    border: 2px solid #60a5fa !important;
+}
+
+:root.dark-mode .btn.outline:hover {
+    background: rgba(59, 130, 246, 0.2) !important;
+    color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+:root.dark-mode .btn.white-btn {
+    background: #475569 !important;
+    color: #f1f5f9 !important;
+    border-color: #60a5fa !important;
+}
+
+:root.dark-mode .btn.white-btn:hover {
+    background: #60a5fa !important;
+    color: #ffffff !important;
+}
+
+:root.dark-mode .btn-glow {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6) !important;
+    border: none !important;
+}
+
+:root.dark-mode .btn-glow:hover {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 40px rgba(96, 165, 250, 0.8) !important;
+    transform: translateY(-2px);
+}
+
+:root.dark-mode .btn-submit {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+:root.dark-mode .btn-submit:hover {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5) !important;
+}
+
+:root.dark-mode .filter-btn {
+    background: #334155 !important;
+    color: #cbd5e1 !important;
+    border: 1px solid #475569 !important;
+}
+
+:root.dark-mode .filter-btn:hover {
+    background: rgba(59, 130, 246, 0.2) !important;
+    color: #60a5fa !important;
+    border-color: #60a5fa !important;
+}
+
+:root.dark-mode .filter-btn.active {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+}
+
+:root.dark-mode input,
+:root.dark-mode textarea,
+:root.dark-mode select {
+    background: #334155 !important;
+    color: #f1f5f9 !important;
+    border-color: #475569 !important;
+}
+
+:root.dark-mode input::placeholder,
+:root.dark-mode textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+:root.dark-mode input:focus,
+:root.dark-mode textarea:focus,
+:root.dark-mode select:focus {
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+/* ================= CTA & BANNERS ================= */
+
+:root.dark-mode .cta {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .cta-box {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%) !important;
+}
+
+:root.dark-mode .stats-banner {
+    background: #1e293b !important;
+}
+
+/* ================= SECTIONS WITH ALTERNATING BACKGROUNDS ================= */
+
+:root.dark-mode .section,
+:root.dark-mode .about,
+:root.dark-mode .process,
+:root.dark-mode .works-section,
+:root.dark-mode .contact-section,
+:root.dark-mode .cta-section {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .services,
+:root.dark-mode .section.services {
+    background: #1e293b !important;
+}
+
+/* Override for specifically white sections */
+:root.dark-mode [class*="bg-white"],
+:root.dark-mode [class*="bg-light"],
+:root.dark-mode .bg-gray {
+    background: #0f172a !important;
+}
+
+:root.dark-mode section {
+    background: #0f172a !important;
+}
+/* ================= FOOTER ================= */
+
+:root.dark-mode .footer {
+    background: #0f172a !important;
+    border-top: 1px solid rgba(59, 130, 246, 0.1) !important;
+}
+
+:root.dark-mode .footer-logo {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .footer-heading {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .footer-description,
+:root.dark-mode .footer p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .footer-links a {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .footer-links a:hover {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .social-icon {
+    background: rgba(59, 130, 246, 0.15) !important;
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .social-icon:hover {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: white !important;
+}
+
+/* ================= MEGA MENU & DROPDOWNS ================= */
+
+:root.dark-mode .mega-menu,
+:root.dark-mode .industries-mega,
+:root.dark-mode .about-mega {
+    background: rgba(15, 23, 42, 0.98) !important;
+    border-top-color: rgba(59, 130, 246, 0.8) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+:root.dark-mode .mega-left a, 
+:root.dark-mode .industries-left a, 
+:root.dark-mode .about-links a {
+    background: rgba(51, 65, 85, 0.6) !important;
+    color: #f1f5f9 !important;
+    border-color: rgba(71, 85, 105, 0.5) !important;
+}
+
+:root.dark-mode .mega-left a:hover, 
+:root.dark-mode .industries-left a:hover, 
+:root.dark-mode .about-links a:hover {
+    background: rgba(59, 130, 246, 0.2) !important;
+    color: #60a5fa !important;
+    border-color: rgba(96, 165, 250, 0.5) !important;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .mega-right {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 1px solid rgba(71, 85, 105, 0.5) !important;
+}
+
+:root.dark-mode .mega-right h3 {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .mega-right p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .mega-right a {
+    color: #60a5fa !important;
+    text-decoration: underline;
+}
+
+:root.dark-mode .mega-right a:hover {
+    color: #3b82f6 !important;
+}
+
+/* ================= CTA & SPECIAL SECTIONS ================= */
+
+:root.dark-mode .cta {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%) !important;
+}
+
+:root.dark-mode .cta h2,
+:root.dark-mode .cta p {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .contact-section {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .contact-section h2 {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .contact-info h2 {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .contact-info p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .contact-btn {
+    background: linear-gradient(90deg, #3b82f6, #0ea5e9) !important;
+    color: white !important;
+}
+
+/* ================= PROCESS ITEMS ================= 
+
+:root.dark-mode .process-grid > div,
+:root.dark-mode .process-item {
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+:root.dark-mode .process-grid > div h4,
+:root.dark-mode .process-item h4 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .process-grid > div p,
+:root.dark-mode .process-item p {
+    color: #cbd5e1 !important;
+}
+
+/* ================= FEATURE ITEMS ================= 
+
+:root.dark-mode .feature-item,
+:root.dark-mode .feature-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+:root.dark-mode .feature-item h4,
+:root.dark-mode .feature-card h4 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .feature-item p,
+:root.dark-mode .feature-card p {
+    color: #cbd5e1 !important;
+}
+
+/* ================= TESTIMONIALS ================= 
+
+:root.dark-mode .testimonial {
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+:root.dark-mode .testimonial p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .testimonial-author {
+    color: #f1f5f9 !important;
+}
+
+/* ================= LISTS & TABLES ================= 
+
+:root.dark-mode li {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode table {
+    background: #334155 !important;
+    color: #f1f5f9;
+}
+
+:root.dark-mode tbody tr {
+    border-color: #475569 !important;
+}
+
+:root.dark-mode tbody tr:hover {
+    background: #475569 !important;
+}
+
+/* ================= BADGES & TAGS ================= 
+
+:root.dark-mode .badge,
+:root.dark-mode .label,
+:root.dark-mode .tag {
+    background: rgba(59, 130, 246, 0.2) !important;
+    color: #60a5fa !important;
+}
+
+/* ================= UTILITY CLASSES ================= */
+
+:root.dark-mode .gradient-text {
+    background: linear-gradient(135deg, #60a5fa, #0ea5e9) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+:root.dark-mode .footer-bottom {
+    border-top-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* ================= ABOUT PAGE COMPREHENSIVE ================= */
+
+:root.dark-mode .about-hero,
+:root.dark-mode .about-overview,
+:root.dark-mode .about-mvv,
+:root.dark-mode .about-why,
+:root.dark-mode .about-team,
+:root.dark-mode .partners-section,
+:root.dark-mode .section-padding,
+:root.dark-mode .bg-light {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .about-mvv.bg-light,
+:root.dark-mode .section-padding.bg-light {
+    background: #1e293b !important;
+}
+
+:root.dark-mode .overview-grid,
+:root.dark-mode .mvv-grid,
+:root.dark-mode .why-grid,
+:root.dark-mode .team-grid {
+    background: transparent !important;
+}
+
+:root.dark-mode .section-title,
+:root.dark-mode .section-subtitle {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .overview-description,
+:root.dark-mode .overview-text p {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .office-card {
+    background: #334155 !important;
+    border-color: #475569 !important;
+}
+
+:root.dark-mode .office-card:hover {
+    background: #475569 !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3) !important;
+}
+
+:root.dark-mode .office-map-visual {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .office-info h4 {
+    color: #f1f5f9 !important;
+}
+
+:root.dark-mode .office-role {
+    color: #60a5fa !important;
+}
+
+:root.dark-mode .office-address {
+    color: #cbd5e1 !important;
+}
+
+:root.dark-mode .office-desc {
+    color: #94a3b8 !important;
+}
+
+:root.dark-mode .office-contact {
+    border-top-color: #475569 !important;
+}
+
+:root.dark-mode .contact-item {
+    color: #cbd5e1 !important;
+}
+
+/* ================= INDUSTRIES PAGE COMPREHENSIVE ================= */
+
+:root.dark-mode .industries-page,
+:root.dark-mode .industries-hero,
+:root.dark-mode .industries-intro,
+:root.dark-mode .industries-grid-section,
+:root.dark-mode .industries-why,
+:root.dark-mode .section-spacing {
+    background: #0f172a !important;
+}
+
+:root.dark-mode .industries-hero {
+    background-image: url('../images/industries/industries-hero.jpeg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+:root.dark-mode .industries-hero .hero-overlay {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(41, 73, 156, 0.6) 100%) !important;
+}
+
+:root.dark-mode .intro-grid {
+    background: transparent !important;
+}
+
+/* ================= CAREERS PAGE COMPREHENSIVE ================= */
+
+:root.dark-mode .btn-primary,
+:root.dark-mode .btn-secondary {
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9) !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+:root.dark-mode .btn-primary:hover,
+:root.dark-mode .btn-secondary:hover {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5) !important;
+}
+
+/* ================= FORCE ALL REMAINING WHITE/LIGHT BACKGROUNDS ================= */
+
+:root.dark-mode [style*="background: white"],
+:root.dark-mode [style*="background: #fff"],
+:root.dark-mode [style*="background: #ffffff"],
+:root.dark-mode [style*="background: #f9fafb"],
+:root.dark-mode [style*="background: #fafafa"],
+:root.dark-mode [style*="background: #f8fafc"],
+:root.dark-mode [style*="background: #f3f4f6"] {
+    background: #1e293b !important;
+    color: #f1f5f9 !important;
+}
+
+/* ================= FORCE GRAY TEXT TO LIGHT ================= */
+
+:root.dark-mode [style*="color: #333"],
+:root.dark-mode [style*="color: #666"],
+:root.dark-mode [style*="color: #6b7280"],
+:root.dark-mode [style*="color: #475569"],
+:root.dark-mode [style*="color: #64748b"] {
+    color: #cbd5e1 !important;
+}
+
+/* ================= SMOOTH TRANSITIONS ================= */
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root.dark-mode * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ================= MOBILE MENU DARK MODE ================= */
+
+:root.dark-mode .mobile-menu-toggle span {
+    background: #f1f5f9 !important;
+}
+
+:root.dark-mode .mobile-nav {
+    background: rgba(15, 23, 42, 0.98) !important;
+    backdrop-filter: blur(12px);
+}
+
+:root.dark-mode .mobile-nav a,
+:root.dark-mode .mobile-nav button {
+    color: #f1f5f9 !important;
+    border-bottom-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+:root.dark-mode .mobile-nav a:hover,
+:root.dark-mode .mobile-nav button:hover {
+    background: rgba(59, 130, 246, 0.15) !important;
+    color: #60a5fa !important;
+}

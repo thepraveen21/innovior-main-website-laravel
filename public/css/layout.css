@@ -1,0 +1,583 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-blue: #29499C;
+    --secondary-blue: #2A4A9D;
+    --blue-accent: #3b82f6;
+    
+    --bg-white: #FFFFFF;
+    --bg-dark: #0F172A;
+    --bg-glass: rgba(255, 255, 255, 0.98);
+
+    --text-main: #1e293b;
+    --text-light: #ffffff;
+    --text-muted: #64748b;
+
+    --transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bg-white);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--primary-blue); color: white; }
+
+/* =========================================
+   2. NAVBAR (Fixed Height & Alignment)
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px; 
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.navbar .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo a { display: flex; align-items: center; height: 100%; text-decoration: none; }
+.logo img { height: 30px; width: auto; object-fit: contain; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 32px; height: 100%; }
+
+.nav-link, .dropdown-toggle {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text-main);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+}
+
+
+
+.contact-btn {
+    padding: 10px 24px !important;
+    height: auto !important;
+    border-radius: 5px;
+    background: var(--primary-blue);
+    color: white !important;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(41, 73, 156, 0.3);
+    border-bottom: none !important;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    background: var(--secondary-blue);
+    box-shadow: 0 6px 20px rgba(41, 73, 156, 0.4);
+}
+
+
+/* =========================================
+   3. MEGA MENU (Beautified Tabs - FIXED)
+   ========================================= */
+.mega-dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mega-menu {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    
+    width: 720px; 
+    padding: 24px;
+    
+    background: #ffffff;
+    border-radius: 0 0 16px 16px; 
+    border-top: 4px solid var(--primary-blue);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); 
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+    z-index: 999;
+}
+
+.mega-dropdown:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* --- UNIVERSAL LINK STYLING (Fixes "Ugly" Links) --- */
+/* This applies to Services, Industries, AND About tabs */
+.mega-left a, 
+.industries-left a, 
+.about-links a {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px; /* Bigger touch target */
+    color: var(--text-main);
+    text-decoration: none; /* Removes the ugly underline */
+    border-radius: 8px;
+    transition: 0.2s;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid transparent; 
+    background-color: #fff; /* Clean white background */
+}
+
+/* Hover Effect for ALL links */
+.mega-left a:hover, 
+.industries-left a:hover, 
+.about-links a:hover {
+    background: #EFF6FF; /* Light Blue BG */
+    color: var(--primary-blue);
+    border-color: rgba(41, 73, 156, 0.1);
+    transform: translateX(4px); /* Little slide animation */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* --- Layout Specifics --- */
+
+/* Services (Grid layout) */
+.mega-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Industries (Grid layout) */
+.industries-mega { width: 600px; grid-template-columns: 1fr; }
+.industries-left { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+}
+
+/* About (List layout) */
+.about-mega { width: 550px; grid-template-columns: 1.2fr 1fr; }
+.about-links { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; /* Vertical spacing */
+}
+
+/* Right Column Feature Box */
+.mega-right {
+    background: #F8FAFC;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mega-right h3 {
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.mega-right p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.mega-right img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* =========================================
+   4. FOOTER (Fixed Giant Icon)
+   ========================================= */
+.footer {
+    background-color: #0F172A;
+    color: #cbd5e1;
+    padding: 80px 0 30px;
+    font-size: 0.95rem;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden; /* Stops anything from overflowing */
+}
+
+.footer .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 50px;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.footer-heading {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a { color: #94a3b8; text-decoration: none; transition: 0.3s; }
+.footer-links a:hover { color: #ffffff; padding-left: 5px; color: var(--blue-accent); }
+
+/* Contact details keep consistent color and no underline */
+.contact-list { list-style: none; padding: 0; margin: 0; }
+.contact-list li { margin-bottom: 12px; color: #cbd5e1; display: flex; align-items: center; gap: 10px; }
+.contact-list .icon { flex-shrink: 0; }
+.contact-list a { color: #cbd5e1; text-decoration: none; font-weight: 600; }
+.contact-list a:hover { color: #ffffff; }
+
+/* --- THE SOCIAL ICON FIX --- */
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.social-icon {
+    display: flex; /* Centers the SVG */
+    align-items: center;
+    justify-content: center;
+    width: 40px;  /* STRICT WIDTH */
+    height: 40px; /* STRICT HEIGHT */
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* Prevents squashing */
+}
+
+/* THIS RULE KILLS THE GIANT F */
+.social-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+    fill: currentColor;
+}
+
+.social-icon:hover {
+    background: var(--primary-blue);
+    transform: translateY(-3px);
+}
+
+.footer-bottom { text-align: center; color: #64748b; font-size: 0.9rem; }
+
+/* =========================================
+   5. MOBILE HAMBURGER MENU
+   ========================================= */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-main);
+    margin: 5px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 24px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-nav.active {
+    transform: translateX(0);
+}
+
+.mobile-nav a,
+.mobile-nav button {
+    display: block;
+    padding: 16px 20px;
+    color: var(--text-main);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 1rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.mobile-nav a:hover,
+.mobile-nav button:hover {
+    background: #EFF6FF;
+    color: var(--primary-blue);
+}
+
+/* =========================================
+   6. COMPREHENSIVE RESPONSIVE DESIGN
+   ========================================= */
+
+/* Large Tablets & Small Desktops (1024px) */
+@media (max-width: 1024px) {
+    .navbar .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .mega-menu,
+    .industries-mega,
+    .about-mega {
+        width: 90vw;
+        max-width: 600px;
+    }
+    
+    .mega-left,
+    .industries-left {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+/* Tablets (768px) */
+@media (max-width: 992px) {
+    .navbar .container {
+        padding: 0 16px;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .mobile-menu-toggle,
+    .mobile-nav {
+        display: block;
+    }
+    
+    .mega-dropdown,
+    .mega-menu,
+    .industries-mega,
+    .about-mega {
+        display: none !important;
+    }
+    
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+/* Mobile Landscape (600px) */
+@media (max-width: 768px) {
+    .navbar {
+        height: 70px;
+    }
+    
+    .mobile-nav {
+        top: 70px;
+    }
+    
+    .logo img {
+        height: 26px;
+    }
+    
+    .footer {
+        padding: 60px 0 30px;
+    }
+    
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+/* Mobile Portrait (480px) */
+@media (max-width: 600px) {
+    .navbar {
+        height: 60px;
+    }
+    
+    .mobile-nav {
+        top: 60px;
+        padding: 16px;
+    }
+    
+    .logo img {
+        height: 24px;
+    }
+    
+    .footer {
+        padding: 40px 0 20px;
+    }
+    
+    .footer-top {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+    }
+    
+    .footer-heading {
+        font-size: 1rem;
+    }
+    
+    .social-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .social-icon svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+/* Extra Small Mobile (360px) */
+@media (max-width: 480px) {
+    .navbar .container {
+        padding: 0 12px;
+    }
+    
+    .logo img {
+        height: 22px;
+    }
+    
+    .mobile-menu-toggle span {
+        width: 22px;
+    }
+    
+    .footer .container {
+        padding: 0 16px;
+    }
+    
+    .contact-btn {
+        padding: 8px 16px !important;
+        font-size: 0.9rem;
+    }
+}
+
+/* Large Screens (1440px+) */
+@media (min-width: 1440px) {
+    .navbar .container,
+    .footer .container {
+        max-width: 1400px;
+    }
+    
+    .mega-menu {
+        width: 800px;
+    }
+}
+
+/* TV/4K Screens (1920px+) */
+@media (min-width: 1920px) {
+    .navbar .container,
+    .footer .container {
+        max-width: 1600px;
+    }
+    
+    .navbar {
+        height: 90px;
+    }
+    
+    .logo img {
+        height: 36px;
+    }
+    
+    .nav-link,
+    .dropdown-toggle {
+        font-size: 1.05rem;
+    }
+    
+    .mega-menu {
+        width: 900px;
+        top: 90px;
+    }
+}

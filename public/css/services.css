@@ -1,0 +1,263 @@
+/* ================= THEME VARIABLES ================= */
+:root {
+  --primary-blue: #29499C;
+  --secondary-blue: #2A4A9D;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --bg-light: #F8FAFC;
+  --bg-dark: #0F172A;
+  --text-light: #f1f5f9;
+  --text-dark-muted: #94a3b8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================= HERO SECTION ================= */
+.services-hero {
+  height: 60vh;
+  min-height: 400px;
+  background: url('../images/services-hero.jpeg') center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 80px;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(41, 73, 156, 0.8));
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin-left: 10%;
+  color: white;
+}
+.badge {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #bfdbfe;
+}
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.hero-content p {
+  font-size: 1.25rem;
+  color: #cbd5e1;
+  max-width: 600px;
+}
+
+/* ================= SUB-NAV (Sticky Tabs) ================= */
+.service-nav-wrapper {
+  background: var(--bg-light);
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 80px;
+  z-index: 900;
+  padding: 15px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.service-nav {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 5px 10%;
+  scrollbar-width: none;
+  justify-content: center;
+}
+.service-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Navigation Link Styling - Light Mode */
+.service-nav a.nav-pill {
+  text-decoration: none !important;
+  white-space: nowrap;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-blue) !important;
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* Specific highlight for active and hover */
+.service-nav a.nav-pill:hover,
+.service-nav a.nav-pill.active {
+  background: var(--primary-blue) !important;
+  color: white !important;
+  border-color: var(--primary-blue) !important;
+}
+
+/* ================= SECTIONS ================= */
+.service-section {
+  padding: 100px 0;
+  background: white;
+}
+.service-section.alt {
+  background: var(--bg-light);
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* TEXT COLUMN */
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background: #EFF6FF;
+  color: var(--primary-blue);
+  font-size: 1.8rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.service-text h2 {
+  font-size: 2.5rem;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+.service-text p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+.feature-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+.check {
+  color: white;
+  font-weight: bold;
+  background: var(--primary-blue);
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+/* IMAGE COLUMN */
+.service-image {
+  position: relative;
+}
+.service-image img {
+  width: 100%;
+  border-radius: 16px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.image-bg {
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--primary-blue);
+  border-radius: 16px;
+  z-index: 1;
+}
+
+/* ================= CTA SECTION ================= */
+.services-cta {
+  background: #0F172A;
+  padding: 100px 0;
+  text-align: center;
+  color: white;
+}
+.btn-glow {
+  padding: 16px 40px;
+  background: var(--primary-blue);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* ================= DARK MODE OVERRIDES ================= */
+body.dark-mode {
+  background: var(--bg-dark) !important;
+  color: var(--text-light) !important;
+}
+
+body.dark-mode .service-nav-wrapper {
+  background: var(--bg-dark) !important;
+  border-bottom: 1px solid #1e293b !important;
+}
+
+/* FORCED DARK MODE PILLS */
+body.dark-mode .service-nav a.nav-pill {
+  background: #1e293b !important;
+  color: var(--text-light) !important;
+  border: 1px solid #334155 !important;
+}
+
+/* DARK MODE ACTIVE/HOVER */
+body.dark-mode .service-nav a.nav-pill:hover,
+body.dark-mode .service-nav a.nav-pill.active {
+  background: var(--primary-blue) !important;
+  color: white !important;
+  border-color: var(--primary-blue) !important;
+  box-shadow: 0 0 15px rgba(41, 73, 156, 0.6) !important;
+}
+
+body.dark-mode .service-section {
+  background: var(--bg-dark) !important;
+}
+body.dark-mode .service-section.alt {
+  background: #161e2e !important;
+}
+body.dark-mode .service-text h2,
+body.dark-mode .service-text p {
+  color: var(--text-light) !important;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+}
