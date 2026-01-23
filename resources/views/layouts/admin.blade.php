@@ -138,6 +138,9 @@
                 <a href="{{ route('admin.industries-content.index') }}" class="{{ request()->routeIs('admin.industries-content.*') ? 'active' : '' }}">
                     🏭 Industries Content
                 </a>
+                <a href="{{ route('admin.about-content.index') }}" class="{{ request()->routeIs('admin.about-content.*') ? 'active' : '' }}">
+                    👥 About Content
+                </a>
                 <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                     📄 Pages
                 </a>

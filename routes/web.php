@@ -18,6 +18,17 @@ use App\Models\IndustryCard;
 use App\Models\IndustriesWhy;
 use App\Models\IndustriesWhyItem;
 use App\Models\IndustriesCta;
+use App\Models\AboutHero;
+use App\Models\AboutOverview;
+use App\Models\AboutMvv;
+use App\Models\AboutWhy;
+use App\Models\AboutWhyItem;
+use App\Models\AboutCulture;
+use App\Models\AboutCultureHighlight;
+use App\Models\AboutOffices;
+use App\Models\AboutOfficeLocation;
+use App\Models\AboutPartners;
+use App\Models\AboutPartnerItem;
 
 Route::get('/', function () {
     $sliders = Slider::where('is_active', true)->orderBy('order')->get();
@@ -66,7 +77,21 @@ Route::get('/industries', function () {
     
     return view('industries', compact('hero', 'intro', 'industries', 'why', 'whyItems', 'cta'));
 })->name('industries');
-Route::view('/about', 'about')->name('about');
+Route::get('/about', function () {
+    $hero = AboutHero::first();
+    $overview = AboutOverview::first();
+    $mvv = AboutMvv::first();
+    $why = AboutWhy::first();
+    $whyItems = AboutWhyItem::orderBy('order')->get();
+    $culture = AboutCulture::first();
+    $cultureHighlights = AboutCultureHighlight::orderBy('order')->get();
+    $offices = AboutOffices::first();
+    $officeLocations = AboutOfficeLocation::orderBy('order')->get();
+    $partners = AboutPartners::first();
+    $partnerItems = AboutPartnerItem::orderBy('order')->get();
+    
+    return view('about', compact('hero', 'overview', 'mvv', 'why', 'whyItems', 'culture', 'cultureHighlights', 'offices', 'officeLocations', 'partners', 'partnerItems'));
+})->name('about');
 Route::view('/careers', 'careers')->name('careers');
 Route::view('/resources', 'resources')->name('resources');
 Route::view('/contact', 'contact')->name('contact');
@@ -82,6 +107,7 @@ use App\Http\Controllers\Admin\Content\SliderController;
 use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\ServicesContentController;
 use App\Http\Controllers\Admin\IndustriesContentController;
+use App\Http\Controllers\Admin\AboutContentController;
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -130,6 +156,27 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/industries-content/why-item', [IndustriesContentController::class, 'storeWhyItem'])->name('industries-content.why-item.store');
     Route::delete('/industries-content/why-item/{whyItem}', [IndustriesContentController::class, 'deleteWhyItem'])->name('industries-content.why-item.delete');
     Route::post('/industries-content/update-cta', [IndustriesContentController::class, 'updateCta'])->name('industries-content.update-cta');
+    
+    // About Content Management
+    Route::get('/about-content', [AboutContentController::class, 'index'])->name('about-content.index');
+    Route::post('/about-content/update-hero', [AboutContentController::class, 'updateHero'])->name('about-content.update-hero');
+    Route::post('/about-content/update-overview', [AboutContentController::class, 'updateOverview'])->name('about-content.update-overview');
+    Route::post('/about-content/update-mvv', [AboutContentController::class, 'updateMvv'])->name('about-content.update-mvv');
+    Route::post('/about-content/update-why', [AboutContentController::class, 'updateWhy'])->name('about-content.update-why');
+    Route::post('/about-content/why-item', [AboutContentController::class, 'storeWhyItem'])->name('about-content.why-item.store');
+    Route::put('/about-content/why-item/{whyItem}', [AboutContentController::class, 'updateWhyItem'])->name('about-content.why-item.update');
+    Route::delete('/about-content/why-item/{whyItem}', [AboutContentController::class, 'deleteWhyItem'])->name('about-content.why-item.delete');
+    Route::post('/about-content/update-culture', [AboutContentController::class, 'updateCulture'])->name('about-content.update-culture');
+    Route::post('/about-content/culture-highlight', [AboutContentController::class, 'storeCultureHighlight'])->name('about-content.culture-highlight.store');
+    Route::delete('/about-content/culture-highlight/{highlight}', [AboutContentController::class, 'deleteCultureHighlight'])->name('about-content.culture-highlight.delete');
+    Route::post('/about-content/update-offices', [AboutContentController::class, 'updateOffices'])->name('about-content.update-offices');
+    Route::post('/about-content/office-location', [AboutContentController::class, 'storeOfficeLocation'])->name('about-content.office-location.store');
+    Route::put('/about-content/office-location/{location}', [AboutContentController::class, 'updateOfficeLocation'])->name('about-content.office-location.update');
+    Route::delete('/about-content/office-location/{location}', [AboutContentController::class, 'deleteOfficeLocation'])->name('about-content.office-location.delete');
+    Route::post('/about-content/update-partners', [AboutContentController::class, 'updatePartners'])->name('about-content.update-partners');
+    Route::post('/about-content/partner-item', [AboutContentController::class, 'storePartnerItem'])->name('about-content.partner-item.store');
+    Route::put('/about-content/partner-item/{item}', [AboutContentController::class, 'updatePartnerItem'])->name('about-content.partner-item.update');
+    Route::delete('/about-content/partner-item/{item}', [AboutContentController::class, 'deletePartnerItem'])->name('about-content.partner-item.delete');
 });
 
 
