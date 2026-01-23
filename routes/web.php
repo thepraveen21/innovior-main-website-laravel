@@ -29,6 +29,12 @@ use App\Models\AboutOffices;
 use App\Models\AboutOfficeLocation;
 use App\Models\AboutPartners;
 use App\Models\AboutPartnerItem;
+use App\Models\WorksHero;
+use App\Models\ProjectCategory;
+use App\Models\Project;
+use App\Models\WorksStats;
+use App\Models\WorksStatItem;
+use App\Models\WorksCta;
 
 Route::get('/', function () {
     $sliders = Slider::where('is_active', true)->orderBy('order')->get();
@@ -96,7 +102,16 @@ Route::view('/careers', 'careers')->name('careers');
 Route::view('/resources', 'resources')->name('resources');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/news', 'news')->name('news');
-Route::view('/works', 'works')->name('works');
+Route::get('/works', function () {
+    $hero = WorksHero::first();
+    $categories = ProjectCategory::where('is_active', true)->orderBy('order')->get();
+    $projects = Project::with('category')->where('is_active', true)->orderBy('order')->get();
+    $stats = WorksStats::first();
+    $statItems = WorksStatItem::orderBy('order')->get();
+    $cta = WorksCta::first();
+    
+    return view('works', compact('hero', 'categories', 'projects', 'stats', 'statItems', 'cta'));
+})->name('works');
 Route::get('/careers', fn () => view('careers'))->name('careers');
 
 
@@ -108,6 +123,7 @@ use App\Http\Controllers\Admin\HomeContentController;
 use App\Http\Controllers\Admin\ServicesContentController;
 use App\Http\Controllers\Admin\IndustriesContentController;
 use App\Http\Controllers\Admin\AboutContentController;
+use App\Http\Controllers\Admin\WorksContentController;
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -177,6 +193,21 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/about-content/partner-item', [AboutContentController::class, 'storePartnerItem'])->name('about-content.partner-item.store');
     Route::put('/about-content/partner-item/{item}', [AboutContentController::class, 'updatePartnerItem'])->name('about-content.partner-item.update');
     Route::delete('/about-content/partner-item/{item}', [AboutContentController::class, 'deletePartnerItem'])->name('about-content.partner-item.delete');
+    
+    // Works Content Management
+    Route::get('/works-content', [WorksContentController::class, 'index'])->name('works-content.index');
+    Route::post('/works-content/update-hero', [WorksContentController::class, 'updateHero'])->name('works-content.update-hero');
+    Route::post('/works-content/category', [WorksContentController::class, 'storeCategory'])->name('works-content.category.store');
+    Route::put('/works-content/category/{category}', [WorksContentController::class, 'updateCategory'])->name('works-content.category.update');
+    Route::delete('/works-content/category/{category}', [WorksContentController::class, 'deleteCategory'])->name('works-content.category.delete');
+    Route::post('/works-content/project', [WorksContentController::class, 'storeProject'])->name('works-content.project.store');
+    Route::put('/works-content/project/{project}', [WorksContentController::class, 'updateProject'])->name('works-content.project.update');
+    Route::delete('/works-content/project/{project}', [WorksContentController::class, 'deleteProject'])->name('works-content.project.delete');
+    Route::post('/works-content/update-stats', [WorksContentController::class, 'updateStats'])->name('works-content.update-stats');
+    Route::post('/works-content/stat-item', [WorksContentController::class, 'storeStatItem'])->name('works-content.stat-item.store');
+    Route::put('/works-content/stat-item/{statItem}', [WorksContentController::class, 'updateStatItem'])->name('works-content.stat-item.update');
+    Route::delete('/works-content/stat-item/{statItem}', [WorksContentController::class, 'deleteStatItem'])->name('works-content.stat-item.delete');
+    Route::post('/works-content/update-cta', [WorksContentController::class, 'updateCta'])->name('works-content.update-cta');
 });
 
 

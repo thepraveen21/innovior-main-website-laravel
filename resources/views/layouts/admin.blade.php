@@ -141,6 +141,9 @@
                 <a href="{{ route('admin.about-content.index') }}" class="{{ request()->routeIs('admin.about-content.*') ? 'active' : '' }}">
                     👥 About Content
                 </a>
+                <a href="{{ route('admin.works-content.index') }}" class="{{ request()->routeIs('admin.works-content.*') ? 'active' : '' }}">
+                    💼 Works Content
+                </a>
                 <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
                     📄 Pages
                 </a>
