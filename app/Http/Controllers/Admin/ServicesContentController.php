@@ -28,9 +28,18 @@ class ServicesContentController extends Controller
             'badge' => 'required',
             'heading' => 'required',
             'description' => 'required',
+            'hero_image' => 'nullable|image|max:2048',
         ]);
 
         $hero = ServicesHero::firstOrNew();
+        
+        if ($request->hasFile('hero_image')) {
+            if ($hero->hero_image) {
+                Storage::disk('public')->delete($hero->hero_image);
+            }
+            $validated['hero_image'] = $request->file('hero_image')->store('heroes/services', 'public');
+        }
+
         $hero->fill($validated)->save();
         
         return redirect()->route('admin.services-content.index')->with('success', 'Hero section updated successfully.');

@@ -10,7 +10,7 @@
 
 <main class="industries-page">
 
-    <section class="industries-hero">
+    <section class="industries-hero" @if($hero && $hero->hero_image)style="background: url('{{ asset('storage/' . $hero->hero_image) }}') center/cover no-repeat;"@endif>
         <div class="hero-overlay"></div>
         <div class="hero-content fade-up">
             <span class="badge">{{ $hero->badge ?? 'Sectors We Serve' }}</span>

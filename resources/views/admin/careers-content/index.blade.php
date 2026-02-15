@@ -19,7 +19,7 @@
             <h5 class="mb-0">Hero Section</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.careers-content.update-hero') }}" method="POST">
+            <form action="{{ route('admin.careers-content.update-hero') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Tag</label>
@@ -42,6 +42,13 @@
                         <label class="form-label">Button Link</label>
                         <input type="text" name="button_link" class="form-control" value="{{ $hero->button_link ?? '#openings' }}" required>
                     </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Hero Image</label>
+                    @if($hero && $hero->hero_image)
+                        <div><img src="{{ asset('storage/' . $hero->hero_image) }}" style="max-width:300px;margin-bottom:10px;border-radius:5px;"></div>
+                    @endif
+                    <input type="file" name="hero_image" class="form-control" accept="image/*">
                 </div>
                 <button type="submit" class="btn btn-primary">Update Hero</button>
             </form>

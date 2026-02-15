@@ -13,6 +13,7 @@ use App\Models\CareersProcess;
 use App\Models\CareersProcessStep;
 use App\Models\CareersCta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CareersContentController extends Controller
 {
@@ -40,10 +41,19 @@ class CareersContentController extends Controller
             'description' => 'required|string',
             'button_text' => 'required|string|max:255',
             'button_link' => 'required|string|max:255',
+            'hero_image' => 'nullable|image|max:2048',
         ]);
 
         $hero = CareersHero::first() ?? new CareersHero();
-        $hero->fill($request->all());
+        
+        if ($request->hasFile('hero_image')) {
+            if ($hero->hero_image) {
+                Storage::disk('public')->delete($hero->hero_image);
+            }
+            $hero->hero_image = $request->file('hero_image')->store('heroes/careers', 'public');
+        }
+
+        $hero->fill($request->except('hero_image'));
         $hero->save();
 
         return redirect()->back()->with('success', 'Hero section updated successfully!');

@@ -18,5 +18,10 @@ class AboutSection extends Model
         'stat_2_number',
         'stat_2_label',
         'image',
+        'hero_title',
+        'hero_description',
+        'hero_button_text',
+        'hero_button_link',
+        'hero_image',
     ];
 }

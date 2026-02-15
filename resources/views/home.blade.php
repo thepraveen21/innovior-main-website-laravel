@@ -10,22 +10,20 @@
 
 <main class="home">
 
-    <section class="hero">
+    <section class="hero" @if($about && $about->hero_image)style="background: url('{{ asset('storage/' . $about->hero_image) }}') center/cover no-repeat;"@endif>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            @php
-                $slider = \App\Models\Slider::where('is_active', true)->orderBy('order')->first();
-            @endphp
-            
-            @if($slider)
-                <span class="badge fade-up">{{ $slider->title }}</span>
+            @if($about && ($about->hero_title || $about->hero_description))
+                @if($about->hero_title)
+                    <span class="badge fade-up">{{ $about->hero_title }}</span>
+                @endif
                 <h1 class="fade-up" style="transition-delay: 0.1s">
-                    {!! nl2br(e($slider->description)) !!}
+                    {!! nl2br(e($about->hero_description)) !!}
                 </h1>
 
-                @if($slider->button_text && $slider->button_link)
+                @if($about->hero_button_text && $about->hero_button_link)
                     <div class="hero-btns fade-up" style="transition-delay: 0.3s">
-                        <a href="{{ $slider->button_link }}" class="btn primary">{{ $slider->button_text }}</a>
+                        <a href="{{ $about->hero_button_link }}" class="btn primary">{{ $about->hero_button_text }}</a>
                     </div>
                 @endif
             @else

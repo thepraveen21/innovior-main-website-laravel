@@ -12,7 +12,7 @@
 
 <main class="about-page">
 
-    <section class="about-hero">
+    <section class="about-hero" @if($hero && $hero->hero_image)style="background: url('{{ asset('storage/' . $hero->hero_image) }}') center/cover no-repeat;"@endif>
         <div class="hero-overlay"></div>
         <div class="container hero-container">
             <div class="hero-content">

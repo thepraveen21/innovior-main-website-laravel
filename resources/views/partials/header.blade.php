@@ -3,7 +3,7 @@
         
         <div class="logo">
             <a href="{{ route('home') }}">
-             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   <img src="{{ asset('images/logo.jpg') }}" alt="Innovior Logo">
+             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   <img src="{{ $header && $header->logo ? asset('storage/' . $header->logo) : asset('images/logo.jpg') }}" alt="{{ $header && $header->logo_alt_text ? $header->logo_alt_text : 'Innovior Logo' }}">
             </a>
         </div>
 

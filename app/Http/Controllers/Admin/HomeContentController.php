@@ -24,6 +24,30 @@ class HomeContentController extends Controller
         return view('admin.home-content.index', compact('about', 'services', 'processSteps', 'stats', 'cta'));
     }
 
+    public function updateHero(Request $request)
+    {
+        $validated = $request->validate([
+            'hero_title' => 'nullable|string',
+            'hero_description' => 'nullable|string',
+            'hero_button_text' => 'nullable|string',
+            'hero_button_link' => 'nullable|string',
+            'hero_image' => 'nullable|image|max:2048',
+        ]);
+
+        $about = AboutSection::firstOrNew();
+        
+        if ($request->hasFile('hero_image')) {
+            if ($about->hero_image) {
+                Storage::disk('public')->delete($about->hero_image);
+            }
+            $validated['hero_image'] = $request->file('hero_image')->store('hero', 'public');
+        }
+
+        $about->fill($validated)->save();
+        
+        return redirect()->route('admin.home-content.index')->with('success', 'Hero slider updated successfully.');
+    }
+
     public function updateAbout(Request $request)
     {
         $validated = $request->validate([

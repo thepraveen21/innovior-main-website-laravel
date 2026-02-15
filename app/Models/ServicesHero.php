@@ -12,5 +12,6 @@ class ServicesHero extends Model
         'badge',
         'heading',
         'description',
+        'hero_image',
     ];
 }

@@ -12,5 +12,6 @@ class AboutHero extends Model
         'subtitle',
         'heading',
         'description',
+        'hero_image',
     ];
 }

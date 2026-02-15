@@ -17,5 +17,6 @@ class CareersHero extends Model
         'description',
         'button_text',
         'button_link',
+        'hero_image',
     ];
 }

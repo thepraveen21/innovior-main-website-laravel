@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
-use App\Models\Slider;
 use App\Models\AboutSection;
 use App\Models\Service;
 use App\Models\ProcessStep;
@@ -56,14 +55,13 @@ use App\Models\ContactFormSettings;
 use App\Models\ContactMap;
 
 Route::get('/', function () {
-    $sliders = Slider::where('is_active', true)->orderBy('order')->get();
     $about = AboutSection::first();
     $services = Service::where('is_active', true)->orderBy('order')->get();
     $processSteps = ProcessStep::orderBy('order')->get();
     $stats = StatsBanner::orderBy('order')->get();
     $cta = CtaSection::first();
     
-    return view('home', compact('sliders', 'about', 'services', 'processSteps', 'stats', 'cta'));
+    return view('home', compact('about', 'services', 'processSteps', 'stats', 'cta'));
 })->name('home');
 
 Route::get('/services', function () {
@@ -162,8 +160,9 @@ Route::get('/works', function () {
 // Admin Dashboard Route
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\Content\PageController;
-use App\Http\Controllers\Admin\Content\SliderController;
 use App\Http\Controllers\Admin\HomeContentController;
+use App\Http\Controllers\Admin\HeaderController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\ServicesContentController;
 use App\Http\Controllers\Admin\IndustriesContentController;
 use App\Http\Controllers\Admin\AboutContentController;
@@ -176,10 +175,18 @@ Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.da
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('pages', PageController::class);
-    Route::resource('sliders', SliderController::class);
+    
+    // Header Management
+    Route::get('/header', [HeaderController::class, 'index'])->name('header.index');
+    Route::post('/header/update', [HeaderController::class, 'update'])->name('header.update');
+    
+    // Footer Management
+    Route::get('/footer', [FooterController::class, 'index'])->name('footer.index');
+    Route::post('/footer/update', [FooterController::class, 'update'])->name('footer.update');
     
     // Home Content Management
     Route::get('/home-content', [HomeContentController::class, 'index'])->name('home-content.index');
+    Route::post('/home-content/update-hero', [HomeContentController::class, 'updateHero'])->name('home-content.update-hero');
     Route::post('/home-content/update-about', [HomeContentController::class, 'updateAbout'])->name('home-content.update-about');
     Route::post('/home-content/update-cta', [HomeContentController::class, 'updateCta'])->name('home-content.update-cta');
     

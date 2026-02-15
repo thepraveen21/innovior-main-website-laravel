@@ -9,7 +9,7 @@
 @section('content')
 
 <!-- HERO -->
-<section class="careers-hero">
+<section class="careers-hero" @if($hero && $hero->hero_image)style="background: url('{{ asset('storage/' . $hero->hero_image) }}') center/cover no-repeat;"@endif>
     <div class="hero-inner">
         <span class="hero-tag">{{ $hero->tag ?? 'Careers at Innovior' }}</span>
         <h1>{{ $hero->heading ?? 'Shape the Future of Digital Innovation' }}</h1>

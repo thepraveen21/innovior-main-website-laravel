@@ -12,5 +12,6 @@ class IndustriesHero extends Model
         'badge',
         'heading',
         'description',
+        'hero_image',
     ];
 }

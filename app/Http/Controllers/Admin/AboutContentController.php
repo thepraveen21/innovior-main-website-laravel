@@ -15,6 +15,7 @@ use App\Models\AboutOfficeLocation;
 use App\Models\AboutPartners;
 use App\Models\AboutPartnerItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AboutContentController extends Controller
 {
@@ -45,9 +46,18 @@ class AboutContentController extends Controller
             'subtitle' => 'required|string|max:255',
             'heading' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'hero_image' => 'nullable|image|max:2048',
         ]);
 
         $hero = AboutHero::first();
+        
+        if ($request->hasFile('hero_image')) {
+            if ($hero && $hero->hero_image) {
+                Storage::disk('public')->delete($hero->hero_image);
+            }
+            $validated['hero_image'] = $request->file('hero_image')->store('heroes/about', 'public');
+        }
+
         if ($hero) {
             $hero->update($validated);
         } else {

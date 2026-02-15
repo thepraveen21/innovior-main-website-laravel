@@ -126,8 +126,8 @@
                 <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     📊 Dashboard
                 </a>
-                <a href="{{ route('admin.sliders.index') }}" class="{{ request()->routeIs('admin.sliders.*') ? 'active' : '' }}">
-                    🎨 Home Sliders
+                <a href="{{ route('admin.header.index') }}" class="{{ request()->routeIs('admin.header.*') ? 'active' : '' }}">
+                    🎨 Header & Logo
                 </a>
                 <a href="{{ route('admin.home-content.index') }}" class="{{ request()->routeIs('admin.home-content.*') ? 'active' : '' }}">
                     🏠 Home Content
@@ -153,8 +153,8 @@
                 <a href="{{ route('admin.contact-content.index') }}" class="{{ request()->routeIs('admin.contact-content.*') ? 'active' : '' }}">
                     📞 Contact Content
                 </a>
-                <a href="{{ route('admin.pages.index') }}" class="{{ request()->routeIs('admin.pages.*') ? 'active' : '' }}">
-                    📄 Pages
+                <a href="{{ route('admin.footer.index') }}" class="{{ request()->routeIs('admin.footer.*') ? 'active' : '' }}">
+                    🔚 Footer
                 </a>
             </div>
             

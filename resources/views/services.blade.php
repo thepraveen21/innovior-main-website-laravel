@@ -10,7 +10,7 @@
 
 <main class="services-page">
 
-    <section class="services-hero">
+    <section class="services-hero" @if($hero && $hero->hero_image)style="background: url('{{ asset('storage/' . $hero->hero_image) }}') center/cover no-repeat;"@endif>
         <div class="hero-overlay"></div>
         <div class="hero-content fade-up">
             <span class="badge">{{ $hero->badge ?? 'Our Expertise' }}</span>
